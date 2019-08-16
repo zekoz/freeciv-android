@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.Manifest;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 
 public class FreecivActivity extends SDLActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -20,7 +21,7 @@ public class FreecivActivity extends SDLActivity implements ActivityCompat.OnReq
 
 	@Override
 	protected String[] getLibraries() {
-		return new String[] { "SDL2", "SDL2_image", "SDL2_mixer", "SDL2_ttf", "python2.7", "freeciv-client", "main" };
+		return new String[] { "freeciv-client" };
 	}
 
 	// Called by onCreate()
@@ -29,6 +30,12 @@ public class FreecivActivity extends SDLActivity implements ActivityCompat.OnReq
 		super.loadLibraries();
 		requestStoragePermissions();
 	}
+
+	@Override
+	protected String getMainFunction() {
+		return "main";
+	}
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
